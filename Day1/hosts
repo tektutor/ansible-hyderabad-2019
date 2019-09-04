@@ -1,0 +1,11 @@
+[all]
+node1 ansible_port=2001
+node2 ansible_port=2002
+node3 ansible_port=2003
+
+[all:vars]
+ansible_user=root
+ansible_host=localhost
+ansible_become_user=root
+ansible_become_password=root
+ansible_private_key_file=/home/rps/.ssh/id_rsa

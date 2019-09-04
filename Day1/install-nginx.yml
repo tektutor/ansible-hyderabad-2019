@@ -1,0 +1,12 @@
+- name: This playbook will install, configure and deploys html web pages into nginx
+  hosts: node3
+  become: yes
+  tasks:
+    - name: Install Extra Packages for Enterprise Linux ( EPEL )
+      yum: name=epel-release state=latest disable_gpg_check=yes
+
+    - name: Fix the repo
+      shell: sed -i "s/mirrorlist=https/mirrorlist=http/" /etc/yum.repos.d/epel.repo
+
+    - name: Install nginx web server
+      yum: name=nginx state=latest 

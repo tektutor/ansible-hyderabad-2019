@@ -1,0 +1,28 @@
+- name: This playbook will install, configure and deploys html web pages into nginx
+  hosts: all 
+  become: yes
+  vars:
+   - greeting_msg: DevOps
+   - provisioner_tool: Docker
+   - cm_tool: Ansible
+  tasks:
+    - name: Install Extra Packages for Enterprise Linux ( EPEL )
+      yum: name=epel-release state=latest disable_gpg_check=yes
+
+    - name: Install nginx web server
+      yum: name=nginx state=latest 
+
+    - name: Start the nginx web server
+      service: name=nginx state=restarted enabled=true
+
+    - name: Create the updated nginx web root folder
+      file: path=/usr/share/html state=directory mode=0777
+
+    - name: Configure the nginx web root folder
+      copy: src=default.conf dest=/etc/nginx/conf.d/default.conf 
+
+    - name: Restart the nginx web server
+      service: name=nginx state=restarted
+
+    - name: Deploy our customized html page
+      template: src=index.html.j2 dest=/usr/share/html/index.html

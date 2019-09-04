@@ -1,0 +1,3 @@
+- name: Install nginx web server
+  yum: name=nginx state=latest 
+

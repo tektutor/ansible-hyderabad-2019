@@ -1,0 +1,11 @@
+- name: This playbook will ping all the remote nodes
+  hosts: all
+  tasks:
+        - name: Ping the remote node
+          ping:
+
+        - name: List the folder contents 
+          shell: ls -l /root
+          register: output
+
+        - debug: var=output
