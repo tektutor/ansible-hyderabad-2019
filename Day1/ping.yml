@@ -1,3 +1,11 @@
+- hosts: localhost
+  tasks:
+     - name: Display the current user
+       shell: whoami
+       register: output
+      
+     - debug: var=output
+     
 - name: This playbook will ping all the remote nodes
   hosts: all
   tasks:
